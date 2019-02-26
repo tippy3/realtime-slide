@@ -14,13 +14,14 @@
 
   db.collection("appCore").doc("slide").onSnapshot((doc)=>{
     const num = String(doc.data().currentNum);
-    getDataFromFirestore(num);
+    const name = doc.data().currentName;
+    getDataFromFirestore(name,num);
   },(error)=>{
     outputError(error);
   });
 
-  function getDataFromFirestore(num) {
-    db.collection("music").doc(num).get().then((doc)=>{
+  function getDataFromFirestore(name,num) {
+    db.collection(name).doc(num).get().then((doc)=>{
       if (doc.exists) {
         const title = doc.data().title;
         const artist = doc.data().artist;
