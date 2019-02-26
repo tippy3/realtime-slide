@@ -55,15 +55,6 @@
           </div>
         </div>
 
-
-        <div class="card p-2 m-1">
-          <button class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">データの登録</button>
-          <div class="collapse" id="collapseForm">
-            <textarea class="mt-1 form-control" id="csvTextArea" rows="3" placeholder="CSVを貼り付けてください"></textarea>
-            <button type="button" class="mt-1 btn btn-primary" id="submitCSVButton">登録する</button>
-          </div>
-        </div>
-
         <div class="card p-2 m-1">
           <button class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">曲一覧</button>
           <div class="collapse" id="collapseTable">
@@ -80,6 +71,14 @@
                 <td></td><td>Loading...</td><td></td><td></td>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <div class="card p-2 m-1">
+          <button class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">データの変更</button>
+          <div class="collapse" id="collapseForm">
+            <textarea class="mt-1 form-control" id="csvTextArea" rows="3" placeholder="CSVを貼り付けてください"></textarea>
+            <button type="button" class="mt-1 btn btn-primary" id="submitCSVButton">上書き保存</button>
           </div>
         </div>
 
@@ -114,7 +113,7 @@
               </ul>
               その他の情報は取得していません。
             </p>
-            <p>登録したデータの削除を希望する場合、開発者に連絡してください。</p>
+            <p>登録したデータを削除したい場合、開発者に連絡してください。</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>

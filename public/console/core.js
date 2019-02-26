@@ -96,28 +96,28 @@
     $("#submitCSVButton").click(submitCSV);
 
     function incrementNum(){
-      currentNum++;
-      if(currentNum>=currentData.length){
-        currentNum = currentData.length-1;
-      }
-      updateHTML();
-      db.collection("appCore").doc("slide").update({
-        currentNum: currentNum
-      });
+      setNum(Number(currentNum)+1);
     }
     $("#incrementButton").click(incrementNum);
 
     function decrementNum(){
-      currentNum--;
-      if(currentNum<0){
+      setNum(Number(currentNum)-1);
+    }
+    $("#decrementButton").click(decrementNum);
+
+    function setNum(newNum){
+      if(newNum>=currentData.length){
+        currentNum = currentData.length-1;
+      }else if(newNum<0){
         currentNum = 0;
+      }else{
+        currentNum = newNum;
       }
       updateHTML();
       db.collection("appCore").doc("slide").update({
         currentNum: currentNum
       });
     }
-    $("#decrementButton").click(decrementNum);
 
     function updateHTML(){
       $("#musicNumber").text(Number(currentNum)+1);
@@ -160,6 +160,11 @@
               </tr>`;
             });
             $("#musicListTbody").html(tmp);
+            for(let i=0;i<currentData.length;i++){
+              $("#tr-"+i).click(()=>{
+                setNum(i);
+              });
+            }
             updateHTML();
           } else {
             outputError("snap.docs[0] is undefined.");
@@ -172,6 +177,13 @@
     }
     setSnapshotEvent();
 
+    document.onkeydown = (evt)=>{
+      if(evt.which===37||evt.which===38){
+        decrementNum();
+      }else if(evt.which===39||evt.which===40){
+        incrementNum();
+      }
+    }
 
   }
 
