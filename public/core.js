@@ -13,24 +13,23 @@
   const db = firebase.firestore();
 
   db.collection("appCore").doc("slide").onSnapshot((doc)=>{
-    const num = String(doc.data().currentNum);
+    const num = doc.data().currentNum;
     const name = doc.data().currentName;
-    getDataFromFirestore(name,num);
+    getDocFromFirestore(name,num);
   },(error)=>{
     outputError(error);
   });
 
-  function getDataFromFirestore(name,num) {
-    db.collection(name).doc(num).get().then((doc)=>{
+  function getDocFromFirestore(name,num) {
+    db.collection(name).doc( "m"+("0000"+num).slice(-5) ).get().then((doc)=>{
       if (doc.exists) {
         const title = doc.data().title;
         const artist = doc.data().artist;
         const category = doc.data().category;
-        $("#music-number").text("#"+num);
+        $("#music-number").text("#"+(num+1));
         $("#music-title").text(title);
         $("#music-artist").text(artist);
         $("#music-category").text(category);
-        console.log("Document data:", doc.data()); //TODO: delete
       } else {
         outputError("doc.data() is undefined.");
       }

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
-    <title>イントロ大会｜Mutius</title>
+    <title>コンソール｜Mutius Slide</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -30,25 +30,69 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand text-warning" href="index.html">京都大学クイズ研究会</a>
+      <a class="navbar-brand text-warning" href="index.html">Mutius</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </nav>
 
-    <main role="main" class="container">
-      <button type="button" class="btn btn-primary d-none" id="loginButton">ログイン</button>
-      <button type="button" class="btn btn-outline-danger d-none" id="logoutButton">ログアウト</button>
-      <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModalCenter">個人情報について</button>
+    <main role="main" class="container-fluid">
+
       <div class="d-none" id="afterLoginDiv">
-        <hr>
-        <div class="form-group">
-          <label for="csvTextArea">曲データの登録</label>
-          <textarea class="form-control" id="csvTextArea" rows="3" placeholder="CSVを貼り付けてください"></textarea>
+
+        <div class="card p-2 m-1">
+          <div class="row">
+            <div class="col-md-2">
+              <p class="m-0">
+                <button type="button" class="btn btn-lg btn-outline-primary" id="decrementButton">←</button>
+                <button type="button" class="btn btn-lg btn-outline-primary" id="incrementButton">→</button>
+              </p>
+            </div>
+            <div class="col-md-10">
+              <h5>#<span id="musicNumber">0</span> <span id="musicTitle">曲のタイトル</span></h5>
+              <p><span id="musicArtist">アーティスト名</span> / <span id="musicCategory">ジャンル</span></p>
+            </div>
+          </div>
         </div>
-        <button type="button" class="btn btn-primary" id="submitCSVButton">登録する</button>
-        <hr>
+
+
+        <div class="card p-2 m-1">
+          <button class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">データの登録</button>
+          <div class="collapse" id="collapseForm">
+            <textarea class="mt-1 form-control" id="csvTextArea" rows="3" placeholder="CSVを貼り付けてください"></textarea>
+            <button type="button" class="mt-1 btn btn-primary" id="submitCSVButton">登録する</button>
+          </div>
+        </div>
+
+        <div class="card p-2 m-1">
+          <button class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#collapseTable" aria-expanded="false" aria-controls="collapseTable">曲一覧</button>
+          <div class="collapse" id="collapseTable">
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">曲名</th>
+                  <th scope="col">アーティスト名</th>
+                  <th scope="col">ジャンル</th>
+                </tr>
+              </thead>
+              <tbody id="musicListTbody">
+                <td></td><td>Loading...</td><td></td><td></td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
+
+      <div class="card p-2 m-1">
+        <p class="m-0">
+          <button type="button" class="btn btn-primary d-none" id="loginButton">ログイン</button>
+          <button type="button" class="btn btn-outline-danger d-none" id="logoutButton">ログアウト</button>
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter">個人情報について</button>
+        </p>
+      </div>
+
     </main>
 
     <!-- Modal -->
@@ -62,12 +106,15 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>このWebアプリの開発者は以下のデータを見ることができます。その他の情報は取得しておりません。<br>
+            <p>このWebアプリの開発者：<a href="https://twitter.com/tippy_jp" target="_blank">tippy</a></p>
+            <p>開発者は以下のデータを見ることができます。
               <ul>
+                <li>ログインに使われたGmailアドレス</li>
                 <li>登録されたCSVデータ</li>
-                <li>登録されたGoogleアカウント（メールアドレス・表示名）</li>
               </ul>
+              その他の情報は取得していません。
             </p>
+            <p>登録したデータの削除を希望する場合、開発者に連絡してください。</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
