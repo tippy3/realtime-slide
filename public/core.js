@@ -2,25 +2,25 @@
 
   // Initialize Firebase
   const config = {
-    apiKey: "AIzaSyA-49AtZBie_kaneNXp4g3SNydE3HB1Zf4",
-    authDomain: "realtime-slide-by-tippy.firebaseapp.com",
-    databaseURL: "https://realtime-slide-by-tippy.firebaseio.com",
-    projectId: "realtime-slide-by-tippy",
-    storageBucket: "realtime-slide-by-tippy.appspot.com",
-    messagingSenderId: "529086843504"
+    apiKey: "AIzaSyAsZtExWCdf0_cgYptd58zV2Sxofg0Gbbk",
+    authDomain: "mutius-slide.firebaseapp.com",
+    databaseURL: "https://mutius-slide.firebaseio.com",
+    projectId: "mutius-slide",
+    storageBucket: "mutius-slide.appspot.com",
+    messagingSenderId: "170415024303"
   };
   firebase.initializeApp(config);
+  const db = firebase.firestore();
 
-  let db = firebase.firestore();
-
-  db.collection("appCore").doc("slide").onSnapshot(function(doc) {
+  db.collection("appCore").doc("slide").onSnapshot((doc)=>{
     const num = String(doc.data().currentNum);
     getDataFromFirestore(num);
+  },(error)=>{
+    outputError(error);
   });
 
   function getDataFromFirestore(num) {
-    let docRef = db.collection("music").doc(num);
-    docRef.get().then((doc)=> {
+    db.collection("music").doc(num).get().then((doc)=>{
       if (doc.exists) {
         const title = doc.data().title;
         const artist = doc.data().artist;
